@@ -42,7 +42,8 @@ public class Triangle implements ResizableImage {
         Point p3 = new Point(width - 10, height);
         gBuffer.setColor(Color.red);
         drawSierpinski(gBuffer, p1, p2, p3, 6);
-       // gBuffer.setColor(Color.black);
+        //gBuffer.setColor(Color.black);
+        // drawSingleTriangle(gBuffer, p1, p2, p3);
         int border = 2;
         gBuffer.drawRect(border, border, size.width - 2 * border, size.height - 2 * border);
         gBuffer.setColor(Color.darkGray);
@@ -51,8 +52,18 @@ public class Triangle implements ResizableImage {
         gBuffer.drawString("Triangle goes here", border * 2, border * 4);
         return bufferedImage;
     }
+    /*private void drawSingleTriangle(Graphics2D gBuffer, Point p1, Point p2, Point p3) {
+        gBuffer.setColor(Color.blue);
+        int [] xPoints = {p1.x, p2.x, p3.x};
+        int [] yPoints = {p1.y, p2.y, p3.y};
+        gBuffer.fillPolygon(xPoints, yPoints, 3);
+    }*/
+
     private void  drawSierpinski( Graphics2D g, Point p1, Point p2, Point p3, int depth) {
+
+
         if (depth == 0) {
+            g.setColor(Color.getHSBColor((float) Math.random(), 0.5f, 1.0f));
             int[] xPoints = {p1.x, p2.x, p3.x};
             int[] yPoints = {p1.y, p2.y, p3.y};
             g.fillPolygon(xPoints, yPoints, 3);
