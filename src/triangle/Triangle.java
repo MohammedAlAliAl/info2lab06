@@ -41,7 +41,8 @@ public class Triangle implements ResizableImage {
         Point p2 = new Point(10,  height);
         Point p3 = new Point(width - 10, height);
         gBuffer.setColor(Color.red);
-        drawSierpinski(gBuffer, p1, p2, p3, 6);
+        int maxDepth = 6;
+        drawSierpinski(gBuffer, p1, p2, p3, maxDepth, maxDepth);
         //gBuffer.setColor(Color.black);
         // drawSingleTriangle(gBuffer, p1, p2, p3);
         int border = 2;
@@ -73,25 +74,31 @@ public class Triangle implements ResizableImage {
      * @param depth the current recursion depth
      */
 
-    private void  drawSierpinski( Graphics2D g, Point p1, Point p2, Point p3, int depth) {
+    private void  drawSierpinski( Graphics2D g, Point p1, Point p2, Point p3, int depth, int maxDepth) {
 
 
-        if (depth == 0) {
-            g.setColor(Color.getHSBColor((float) Math.random(), 0.5f, 1.0f));
-            int[] xPoints = {p1.x, p2.x, p3.x};
-            int[] yPoints = {p1.y, p2.y, p3.y};
-            g.fillPolygon(xPoints, yPoints, 3);
+
+
+        float hue = (float)(maxDepth - depth)/ maxDepth;
+        g.setColor(Color.getHSBColor(hue, 0.6f, 1.0f));
+        //g.setColor(Color.getHSBColor((float) Math.random(), 0.5f, 1.0f));
+        int[] xPoints = {p1.x, p2.x, p3.x};
+        int[] yPoints = {p1.y, p2.y, p3.y};
+        g.fillPolygon(xPoints, yPoints, 3);
+        if(depth == 0) {
             return;
         }
+
+
         // Midpoints of triangle sides
         Point m1 = midpoint(p1, p2);
         Point m2 = midpoint(p2, p3);
         Point m3 = midpoint(p3, p1);
 
         // Recurse into 3 corner triangles
-        drawSierpinski(g, p1, m1, m3, depth - 1);
-        drawSierpinski(g, m1, p2, m2, depth - 1);
-        drawSierpinski(g, m3, m2, p3, depth - 1);
+        drawSierpinski(g, p1, m1, m3, depth - 1, maxDepth);
+        drawSierpinski(g, m1, p2, m2, depth - 1, maxDepth);
+        drawSierpinski(g, m3, m2, p3, depth - 1, maxDepth);
 
     }
 
