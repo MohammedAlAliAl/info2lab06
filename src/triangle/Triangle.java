@@ -59,6 +59,20 @@ public class Triangle implements ResizableImage {
         gBuffer.fillPolygon(xPoints, yPoints, 3);
     }*/
 
+
+    /**
+     * Recursively draws a Sierpinski triangle.
+     *
+     * At the base case (depth == 0), it draws a filled triangle with a random color.
+     * Otherwise, it computes the midpoints of the sides and recursively draws three smaller triangles.
+     *
+     * @param g     the Graphics2D object used for drawing
+     * @param p1    the first corner point of the triangle
+     * @param p2    the second corner point of the triangle
+     * @param p3    the third corner point of the triangle
+     * @param depth the current recursion depth
+     */
+
     private void  drawSierpinski( Graphics2D g, Point p1, Point p2, Point p3, int depth) {
 
 
@@ -80,6 +94,15 @@ public class Triangle implements ResizableImage {
         drawSierpinski(g, m3, m2, p3, depth - 1);
 
     }
+
+    /**
+     * Calculates the midpoint between two points.
+     *
+     * @param a the first point
+     * @param b the second point
+     * @return a new Point representing the midpoint between a and b
+     */
+
     private Point midpoint(Point a, Point b) {
         return new Point((a.x + b.x) / 2, (a.y + b.y) / 2);
     }
