@@ -35,22 +35,24 @@ public class Triangle implements ResizableImage {
         gBuffer.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         gBuffer.setColor(Color.white);
         gBuffer.fillRect(0, 0, size.width, size.height);
-        int height = size.height - 20;
+        int height = size.height-15;
         int width = size.width;
         Point p1 = new Point(width / 2, 10);
         Point p2 = new Point(10,  height);
         Point p3 = new Point(width - 10, height);
-        gBuffer.setColor(Color.red);
-        int maxDepth = 6;
+
+        int maxDepth = 8;
         drawSierpinski(gBuffer, p1, p2, p3, maxDepth, maxDepth);
-        //gBuffer.setColor(Color.black);
+
         // drawSingleTriangle(gBuffer, p1, p2, p3);
+        gBuffer.setColor(Color.red);
         int border = 2;
         gBuffer.drawRect(border, border, size.width - 2 * border, size.height - 2 * border);
         gBuffer.setColor(Color.darkGray);
         border = 8;
         gBuffer.drawRect(border, border, size.width - 2 * border, size.height - 2 * border);
         gBuffer.drawString("Triangle goes here", border * 2, border * 4);
+
         return bufferedImage;
     }
     /*private void drawSingleTriangle(Graphics2D gBuffer, Point p1, Point p2, Point p3) {
@@ -79,9 +81,9 @@ public class Triangle implements ResizableImage {
 
 
 
-        float hue = (float)(maxDepth - depth)/ maxDepth;
-        g.setColor(Color.getHSBColor(hue, 0.6f, 1.0f));
-        //g.setColor(Color.getHSBColor((float) Math.random(), 0.5f, 1.0f));
+        // float hue = (float)(maxDepth - depth)/ maxDepth;
+        //g.setColor(Color.getHSBColor(hue, 0.6f, 1.0f));
+        g.setColor(Color.getHSBColor((float) Math.random(), 0.5f, 1.0f));
         int[] xPoints = {p1.x, p2.x, p3.x};
         int[] yPoints = {p1.y, p2.y, p3.y};
         g.fillPolygon(xPoints, yPoints, 3);
