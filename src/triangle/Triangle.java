@@ -28,7 +28,7 @@ public class Triangle implements ResizableImage {
      * @return an Image containing the Triangle
      */
     private BufferedImage drawTriangle(Dimension size) {
-        print("drawTriangle: " + ++drawTriangle + "size: " + size);
+        //print("drawTriangle: " + ++drawTriangle + "size: " + size);
         BufferedImage bufferedImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D gBuffer = (Graphics2D) bufferedImage.getGraphics();
 
